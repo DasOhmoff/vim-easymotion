@@ -226,6 +226,10 @@ noremap  <silent><Plug>(easymotion-repeat)
 xnoremap <silent><Plug>(easymotion-repeat)
     \ <Esc>:<C-u>call EasyMotion#Repeat(1)<CR>
 
+" -- Ohmoffs overwin-f repeat motion
+noremap  <silent><Plug>(easymotion-repeat-overwin-f)
+    \      :<C-u>call EasyMotion#RepeatF()<CR>
+
 noremap  <silent><Plug>(easymotion-dotrepeat)
     \      :<C-u>call EasyMotion#DotRepeat()<CR>
 "}}}

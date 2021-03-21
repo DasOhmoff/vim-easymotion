@@ -20,6 +20,20 @@ let s:DIRECTION = { 'forward': 0, 'backward': 1, 'bidirection': 2}
 function EasyMotion#SetPreviousSearchRegExp(regularExpression)
     let s:previous.regexp = a:regularExpression
 endfunction
+
+function! EasyMotion#RepeatF()
+    if !empty(s:previous)
+        "Notify that begun and do action
+        silent doautocmd User EasyMotionPromptBegin
+        let l:returnValue = EasyMotion#overwin#move(s:previous.regexp)
+
+        "Notify that finished and return
+        silent doautocmd User EasyMotionPromptEnd
+        return l:returnValue
+	else
+        echo "Previous motion doesn't exist"
+    endif
+endfunction
 "####################################################################################################
 
 
@@ -159,7 +173,7 @@ function! EasyMotion#OverwinF(num_strokes) " {{{
         "Make this motion next and previousable
         let s:previous.regexp = re
 
-        "Notify that begun and return
+        "Notify that begun and do action
         silent doautocmd User EasyMotionPromptBegin
         let l:returnValue = EasyMotion#overwin#move(re)
 
